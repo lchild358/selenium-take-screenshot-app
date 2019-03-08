@@ -1,0 +1,20 @@
+{
+  "name": "selenium-take-screenshot-app",
+  "version": "1.0.0",
+  "description": "Take full screenshot of website by selenium webdriver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chromedriver": "^2.46.0",
+    "combine-image": "^1.0.3",
+    "command-line-args": "^5.0.2",
+    "concat-image": "^1.0.0",
+    "geckodriver": "^1.16.0",
+    "jimp": "^0.6.0",
+    "selenium-webdriver": "^3.6.0"
+  }
+}
