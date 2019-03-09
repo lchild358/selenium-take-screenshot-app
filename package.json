@@ -15,6 +15,7 @@
     "concat-image": "^1.0.0",
     "geckodriver": "^1.16.0",
     "jimp": "^0.6.0",
+    "node-obj-validator": "^1.1.0",
     "selenium-webdriver": "^3.6.0"
   }
 }
