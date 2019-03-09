@@ -4,7 +4,7 @@
   "description": "Take full screenshot of website by selenium webdriver",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.js -i input_sample.json -d ."
   },
   "author": "",
   "license": "MIT",
