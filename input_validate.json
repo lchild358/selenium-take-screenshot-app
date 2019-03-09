@@ -19,7 +19,7 @@
                     },
                     "pre": {
                         "required": false,
-                        "typeof": "object",
+                        "typeof": ["undefined","object"],
                         "child": {
                             "url": {
                                 "required": true,
