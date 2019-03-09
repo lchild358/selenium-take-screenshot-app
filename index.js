@@ -79,7 +79,7 @@ let takeN = async function(webdriver, inputData, dir) {
         // Merge images and write into file
         /* */ console.log('Combining...');
         let img = await combine(files, {direction:'row'});
-        img.write(`${file}.png`);
+        img.write(`${dir}/${file}.png`);
 
         // Delete temporary files
         /* */ console.log('Deleting temporary files...');
