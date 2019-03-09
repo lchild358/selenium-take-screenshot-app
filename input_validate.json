@@ -1,0 +1,66 @@
+{
+    "required": true,
+    "typeof"  : "object",
+    "child"   : {
+        "urls" : {
+            "required": true,
+            "typeof": "object",
+            "children": {
+                "required": true,
+                "typeof": "object",
+                "child": {
+                    "url": {
+                        "required": false,
+                        "typeof": "string"
+                    },
+                    "file": {
+                        "required": true,
+                        "typeof": "string"
+                    },
+                    "pre": {
+                        "required": false,
+                        "typeof": ["undefined","object"],
+                        "child": {
+                            "url": {
+                                "required": true,
+                                "typeof": "string"
+                            },
+                            "actions": {
+                                "required": true,
+                                "typeof": "object",
+                                "children": {
+                                    "required": true,
+                                    "typeof": "object",
+                                    "child": {
+                                        "command": {
+                                            "required": true,
+                                            "typeof": "string"
+                                        },
+                                        "target": {
+                                            "required": true,
+                                            "typeof": ["object"],
+                                            "child": {
+                                                "id": {
+                                                    "required": true,
+                                                    "typeof": "string"
+                                                },
+                                                "type": {
+                                                    "required": true,
+                                                    "typeof": "string"
+                                                }
+                                            }
+                                        },
+                                        "value": {
+                                            "required": false,
+                                            "typeof": ["undefined","string"]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "urls": [
+        {
+            "url": "",
+            "file": "google",
+            "pre": {
+                "url": "https://www.google.co.jp",
+                "actions": [
+                    {
+                        "command": "input",
+                        "target": {
+                            "id": "/html/body/div/div[3]/form/div[2]/div/div[1]/div/div[1]/input",
+                            "type": "xpath"
+                        },
+                        "value": "github"
+                    },
+                    {
+                        "command": "click",
+                        "target": {
+                            "id": "/html/body/div/div[3]/form/div[2]/div/div[3]/center/input[1]",
+                            "type": "xpath"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
