@@ -1,0 +1,8 @@
+{
+    "highlightColor": "#ff00ff",
+    "strict": false,
+    "tolerance": 2.5,
+    "antialiasingTolerance": 0,
+    "ignoreAntialiasing": true,
+    "ignoreCaret": true
+}

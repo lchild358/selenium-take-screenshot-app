@@ -6,7 +6,10 @@ const concat = require('concat-image');
 const combine = require('combine-image');
 const jimp = require('jimp');
 const args = require('command-line-args');
+const looksSame = require('looks-same');
+const moment = require('moment');
 const Validator = require('node-obj-validator');
+const sleep = require('system-sleep');
 
 const optsdef = [
   {name: 'url', alias: 'u', type: String},
@@ -147,10 +150,41 @@ let takeN = async function(webdriver, inputData, dir) {
         }
       }
 
+      // Check for old file (if exists)
+      var name = `${dir}/${file}.png`;
+      var renamedName = '';
+      if(fs.existsSync(name)) {
+        // Rename old file
+        var time = moment().format('YYYYMMDDHHmmssSSS');
+        renamedName = `${dir}/${file}_${time}.png`;
+        fs.renameSync(name, renamedName);
+      }
       // Merge images and write into file
       /* */ console.log('Combining...');
       let img = await combine(files, {direction:'row'});
-      img.write(`${dir}/${file}.png`);
+      img.write(name);
+
+      // Compare image
+      if(renamedName !== ''){
+        /* */ console.log('Comparing...');
+        sleep(5000);
+        looksSame(renamedName, name, require(`${__dirname}/looksame.json`), (error, equal) => {
+          /* */ if(error) console.log(error);
+          if(!!equal && ! equal.equal){
+            /* */ console.log('Diff!');
+            var diffopt = require(`${__dirname}/looksamediff.json`);
+            diffopt['reference'] = renamedName;
+            diffopt['current'] = name,
+            diffopt['diff'] = `${dir}/${file}_${time}_diff.png`;
+
+            looksSame.createDiff(diffopt, (error)=>{
+              /* */ console.log(error);
+            });
+          }else{
+            /* */ console.log('Same!')
+          }
+        });
+      }
 
       // Delete temporary files
       /* */ console.log('Deleting temporary files...');
