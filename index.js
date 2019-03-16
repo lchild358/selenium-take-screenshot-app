@@ -27,6 +27,23 @@ if(! (!!opts.url   && !!opts.output) &&
   process.exit(1);
 }
 
+let initDriver = function(){
+  // setting chrome options 
+  var chromeCapabilities = Webdriver.Capabilities.chrome();
+  var chromeOptions = require(`${__dirname}/chrome-options.json`);
+  chromeCapabilities.set('chromeOptions', chromeOptions);
+
+  let driver = new Webdriver.Builder()
+//  .forBrowser('firefox')
+  .forBrowser('chrome')
+//  .setChromeOptions(/* ... */)
+//  .setFirefoxOptions(/* ... */)
+  .withCapabilities(chromeCapabilities)
+  .build();
+
+  return driver;
+};
+
 let takeN = async function(webdriver, inputData, dir) {
   webdriver.manage().window().maximize();
 
@@ -201,12 +218,7 @@ let takeN = async function(webdriver, inputData, dir) {
 
 if(!!opts.url && !!opts.output){
 
-  let driver = new Webdriver.Builder()
-  .forBrowser('firefox')
-//    .forBrowser('chrome')
-//    .setChromeOptions(/* ... */)
-//    .setFirefoxOptions(/* ... */)
-  .build();
+  let driver = initDriver();
 
   let inputData = {
     urls: [
@@ -216,6 +228,7 @@ if(!!opts.url && !!opts.output){
       }
     ]
   };
+  // Execute
   takeN(driver, inputData, '.');
 }else if(!!opts.input && !!opts.dir){
   // Read input file
@@ -231,15 +244,11 @@ if(!!opts.url && !!opts.output){
     //
   }, ()=>{
 
-    let driver = new Webdriver.Builder()
-    .forBrowser('firefox')
-//    .forBrowser('chrome')
-//    .setChromeOptions(/* ... */)
-//    .setFirefoxOptions(/* ... */)
-    .build();
-
+    let driver = initDriver();
     // Execute
     takeN(driver, inputData, opts.dir);
   });
-}
+};
+
+
 
